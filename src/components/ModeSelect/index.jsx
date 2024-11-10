@@ -13,6 +13,7 @@ function ButtonDarkLight() {
     <Button
       onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
       variant='contained'
+      sx={{width:'100px'}}
     >
       {mode === 'light' ? (
         <DarkModeOutlinedIcon fontSize='small' style={{ marginRight: '5px' }} />

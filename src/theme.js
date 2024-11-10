@@ -2,42 +2,117 @@ import { createTheme } from '@mui/material/styles';
 
 // Create a theme instance.
 const theme = createTheme({
-  trello:{
-    appBarHeight:'48px',
-    boardBarHeight:'58px'
+  trello: {
+    appBarHeight: '48px',
+    boardBarHeight: '58px',
   },
   colorSchemes: {
     light: {
-      true: true,
       palette: {
         primary: {
-          main: '#556cd6',
+          main: '#3f51b5',
+          50:'#3f51b54a'
         },
         secondary: {
-          main: '#19857b',
+          main: '#ff4081',
         },
         error: {
-          main: '#ff0000',
+          main: '#d32f2f',
+        },
+        background: {
+          default: '#f0f0f0',
+          paper: '#ffffff',
+        },
+        text: {
+          primary: '#212121',
+          secondary: '#757575',
         },
       },
     },
     dark: {
-      true: true,
       palette: {
         primary: {
-          main: '#90caf9',
+          main: '#bb86fc',
+          50:'#bb86fc82'
         },
         secondary: {
-          main: '#f48fb1',
+          main: '#ff4081',
         },
         error: {
-          main: '#ff0000',
+          main: '#cf6679',
+        },
+        background: {
+          default: '#1a1a1a',
+          paper: '#2c2c2c',
+        },
+        text: {
+          primary: '#e0e0e0',
+          secondary: '#bdbdbd',
         },
       },
     },
   },
   cssVariables: {
     colorSchemeSelector: 'class',
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          '*::-webkit-scrollbar': {
+            with: '8px',
+            height: '8px',
+          },
+          '*::-webkit-scrollbar-thumb': {
+            background:'#888',
+            borderRadius:'8px'
+          },
+          '*::-webkit-scrollbar-thumb:hover': {
+            background:'#555',
+            borderRadius:'8px'
+          },
+          
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.primary.main,
+            fontSize: '0.875rem',
+          };
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.primary.main,
+            fontSize: '0.875rem',
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.primary.light,
+            },
+            '&:hover': {
+              '.MuiOutlinedInput-notchedOutline': {
+                borderColor: theme.palette.primary.light,
+              },
+            },
+            '& fieldset': {
+              borderWidth: '1px !important',
+            },
+          };
+        },
+      },
+    },
   },
 });
 
