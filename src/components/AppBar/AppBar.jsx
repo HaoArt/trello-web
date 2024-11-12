@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import ButtonDarkLight from '~/components/ModeSelect';
+import ButtonDarkLight from '~/components/ModeSelect/ModeSelect';
 import AppsIcon from '@mui/icons-material/Apps';
 import TrelloLogo from '~/assets/trello.svg?react';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -72,7 +72,7 @@ function AppBar() {
             input: {
               startAdornment: (
                 <InputAdornment position='start'>
-                  <SearchIcon sx={{color:'primary.main'}}/>
+                  <SearchIcon sx={{ color: 'primary.main' }} />
                 </InputAdornment>
               ),
             },
@@ -82,12 +82,17 @@ function AppBar() {
         <ButtonDarkLight />
 
         <Tooltip title='Notification'>
-          <Badge color='secondary' variant='dot' sx={{ cursor: 'pointer' }}>
-            <NotificationsNoneIcon />
+          <Badge
+            badgeContent={4}
+            color='secondary'
+            // variant='dot'
+            sx={{ cursor: 'pointer' }}
+          >
+            <NotificationsNoneIcon color='primary' />
           </Badge>
         </Tooltip>
         <Tooltip title='Help'>
-          <HelpOutlineIcon />
+          <HelpOutlineIcon color='primary' />
         </Tooltip>
         <Profile />
       </Box>

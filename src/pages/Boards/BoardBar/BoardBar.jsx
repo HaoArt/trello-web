@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
@@ -10,6 +11,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import BoltIcon from '@mui/icons-material/Bolt';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Tooltip from '@mui/material/Tooltip';
+import { capitalizeFirstLetter } from '~/utils/formater';
 
 const menuStyles = {
   color: 'primary.main',
@@ -24,7 +26,9 @@ const menuStyles = {
     backgroundColor: 'primary.50',
   },
 };
-function BoardBar() {
+function BoardBar({ board }) {
+  console.log(board);
+
   return (
     <Box
       sx={{
@@ -37,21 +41,21 @@ function BoardBar() {
         gap: 2,
         overflowX: 'auto',
         borderTop: '1px solid',
-        borderTopColor:'primary.main'
+        borderTopColor: 'primary.main',
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip
           sx={menuStyles}
           icon={<DashboardIcon />}
-          label='Hao MERN Stack'
+          label={board?.title}
           clickable
           // onClick={()=>{}}
         />
         <Chip
           sx={menuStyles}
           icon={<PublicIcon />}
-          label='Public/Private Workspaces'
+          label={capitalizeFirstLetter(board?.type) }
           clickable
           // onClick={()=>{}}
         />
@@ -78,7 +82,9 @@ function BoardBar() {
         />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Button variant='outlined' startIcon={<PersonAddIcon/>}>Invite</Button>
+        <Button variant='outlined' startIcon={<PersonAddIcon />}>
+          Invite
+        </Button>
         <AvatarGroup
           max={7}
           sx={{
@@ -86,6 +92,7 @@ function BoardBar() {
               width: 30,
               height: 30,
               fontSize: '16px',
+              color: '#fff',
             },
           }}
         >
