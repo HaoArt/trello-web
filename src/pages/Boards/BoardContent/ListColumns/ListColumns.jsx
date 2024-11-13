@@ -3,49 +3,56 @@ import Box from '@mui/material/Box';
 import Column from './Column/Column';
 import Button from '@mui/material/Button';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
-
+import {
+  SortableContext,
+  horizontalListSortingStrategy,
+} from '@dnd-kit/sortable';
 function ListColumns({ columns }) {
-
   return (
-    <Box
-      sx={{
-        p: '10px 0',
-        background: 'inherit',
-        display: 'flex',
-        width: '100%',
-        height: '100%',
-        overflowX: 'auto',
-        overflowY: 'hidden',
-      }}
+    <SortableContext
+      items={columns?.map((c) => c._id)}
+      strategy={horizontalListSortingStrategy}
     >
-      {columns?.map((column) => (
-        <Column key={column._id} column={column}/>
-      ))}
-      <Box  
+      <Box
         sx={{
-          minWidth: '200px',
-          maxWidth: '200px',
-          backgroundColor: 'primary.main',
-          ml: 2,
-          height: 'fit-content',
-          borderRadius: '6px',
+          p: '10px 0',
+          background: 'inherit',
+          display: 'flex',
+          width: '100%',
+          height: '100%',
+          overflowX: 'auto',
+          overflowY: 'hidden',
         }}
       >
-        <Button
+        {columns?.map((column) => (
+          <Column key={column._id} column={column} />
+        ))}
+        <Box
           sx={{
-            color: 'text.color',
-            width: '100%',
-            justifyContent: 'start',
-            pl: 2,
-            py: 1,
-            mr: 1.5,
+            minWidth: '200px',
+            maxWidth: '200px',
+            backgroundColor: 'primary.main',
+            ml: 2,
+            height: 'fit-content',
+            borderRadius: '6px',
           }}
-          startIcon={<NoteAddIcon />}
         >
-          Add new columns
-        </Button>
+          <Button
+            sx={{
+              color: 'text.color',
+              width: '100%',
+              justifyContent: 'start',
+              pl: 2,
+              py: 1,
+              mr: 1.5,
+            }}
+            startIcon={<NoteAddIcon />}
+          >
+            Add new columns
+          </Button>
+        </Box>
       </Box>
-    </Box>
+    </SortableContext>
   );
 }
 

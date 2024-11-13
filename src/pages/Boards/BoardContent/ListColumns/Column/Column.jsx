@@ -17,9 +17,22 @@ import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import LisCards from './ListCards/LisCards';
 import Typography from '@mui/material/Typography';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { mapOrder } from '~/utils/sort';
 
 function Column({ column }) {
+  //dndkit chỉ nhận arr chứ ko nhận object vd [id-1,id-2] chứ ko phải {id.id-1,id:id.id-2}
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: column._id,
+      data: { ...column },
+    });
+  const dndkitColumnStyle = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -28,9 +41,15 @@ function Column({ column }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  //sort card
   const orderCards = mapOrder(column.cards, column.cardOrderIds, '_id');
+
   return (
     <Box
+      ref={setNodeRef}
+      style={dndkitColumnStyle}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: '300px',
         maxWidth: '300px',

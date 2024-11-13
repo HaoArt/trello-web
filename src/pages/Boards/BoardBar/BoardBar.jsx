@@ -27,8 +27,6 @@ const menuStyles = {
   },
 };
 function BoardBar({ board }) {
-  console.log(board);
-
   return (
     <Box
       sx={{
@@ -55,7 +53,7 @@ function BoardBar({ board }) {
         <Chip
           sx={menuStyles}
           icon={<PublicIcon />}
-          label={capitalizeFirstLetter(board?.type) }
+          label={capitalizeFirstLetter(board?.type)}
           clickable
           // onClick={()=>{}}
         />
