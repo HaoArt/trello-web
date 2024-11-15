@@ -8,6 +8,8 @@ import GroupIcon from '@mui/icons-material/Group';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 // eslint-disable-next-line react/prop-types
 function Card({ card }) {
@@ -18,8 +20,23 @@ function Card({ card }) {
       !!card?.attachments.length
     );
   };
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: card._id,
+      data: { ...card },
+    });
+  const dndkitCardStyle = {
+    // touchAction: 'none',
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
   return (
     <TrelloCard
+      ref={setNodeRef}
+      style={dndkitCardStyle}
+      {...attributes}
+      {...listeners}
       sx={{
         cursor: 'pointer',
         boxShadow: '4px 4px 4px black ',
