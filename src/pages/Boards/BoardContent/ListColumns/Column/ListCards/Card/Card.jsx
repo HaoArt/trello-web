@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import CardMedia from '@mui/material/CardMedia';
-import { Card as TrelloCard } from '@mui/material';
+import { Card as MuiCard } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import CommentIcon from '@mui/icons-material/Comment';
 import AttachmentIcon from '@mui/icons-material/Attachment';
@@ -15,9 +15,9 @@ import { CSS } from '@dnd-kit/utilities';
 function Card({ card }) {
   const showCardActions = () => {
     return (
-      !!card?.memberIds.length ||
-      !!card?.comments.length ||
-      !!card?.attachments.length
+      !!card?.memberIds?.length ||
+      !!card?.comments?.length ||
+      !!card?.attachments?.length
     );
   };
 
@@ -32,7 +32,7 @@ function Card({ card }) {
     transition,
   };
   return (
-    <TrelloCard
+    <MuiCard
       ref={setNodeRef}
       style={dndkitCardStyle}
       {...attributes}
@@ -41,6 +41,7 @@ function Card({ card }) {
         cursor: 'pointer',
         boxShadow: '4px 4px 4px black ',
         overflow: 'unset',
+        display:(card?.FE_PlaceholderCard ? 'none' : 'block')
       }}
     >
       {card?.cover && (
@@ -81,7 +82,7 @@ function Card({ card }) {
           )}
         </CardActions>
       )}
-    </TrelloCard>
+    </MuiCard>
   );
 }
 
